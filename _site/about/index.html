@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>About — Abhi S Aji</title>
+  <meta name="description" content="A technical publication on software engineering, Linux, and open source.">
+  <script>
+  try {
+    const savedTheme = localStorage.getItem('blog-theme');
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      document.documentElement.dataset.theme = savedTheme;
+    }
+  } catch (_) {}
+</script>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="alternate" type="application/atom+xml" title="Abhi S Aji" href="/feed.xml">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/">Abhi S Aji<span class="brand-period">.</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="/articles/">Articles</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/abhi-s-aji" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <button
+  class="theme-toggle"
+  id="theme-toggle"
+  type="button"
+  aria-label="Switch to dark mode"
+  title="Switch theme"
+>
+  <span id="theme-icon" aria-hidden="true">☾</span>
+</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <h1 id="about-this-publication">About this publication</h1>
+
+<p>This is my space for documenting what I learn, the experiences I gain, and the ideas I explore while working with technology.</p>
+
+<p>I write about software engineering, Linux, open source, development tools, and the lessons that come from building and experimenting.</p>
+
+<p>The goal is simple: learn openly, share useful knowledge, and keep improving.</p>
+
+<p>You can find my work on <a href="https://github.com/abhi-s-aji">GitHub</a>, connect with me on <a href="https://www.linkedin.com/in/abhi-s-aji-eden">LinkedIn</a>, or reach me at <a href="mailto:abhisajieden.dev@gmail.com">email</a>.</p>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <a class="footer-brand" href="/">Abhi S Aji.</a>
+        <p class="footer-note">An independent technical publication.</p>
+      </div>
+      <div class="footer-links" aria-label="Social links">
+        <a href="https://github.com/abhi-s-aji">GitHub</a>
+        <a href="https://www.linkedin.com/in/abhi-s-aji-eden">LinkedIn</a>
+        <a href="https://x.com/abhisaji_Eden">X</a>
+        <a href="https://bsky.app/profile/abhisaji.bsky.social">Bluesky</a>
+        <a href="mailto:abhisajieden.dev@gmail.com">Email</a>
+      </div>
+      <p class="copyright">© 2026 Abhi S Aji</p>
+    </div>
+  </footer>
+  <script>
+  (() => {
+    const button = document.getElementById('theme-toggle');
+    const icon = document.getElementById('theme-icon');
+    if (!button || !icon) return;
+
+    function updateTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      icon.textContent = theme === 'dark' ? '☀' : '☾';
+      button.setAttribute(
+        'aria-label',
+        theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+      );
+
+      try {
+        localStorage.setItem('blog-theme', theme);
+      } catch (_) {}
+    }
+
+    updateTheme(
+      document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
+    );
+
+    button.addEventListener('click', () => {
+      const current = document.documentElement.dataset.theme;
+      updateTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  })();
+</script>
+</body>
+</html>

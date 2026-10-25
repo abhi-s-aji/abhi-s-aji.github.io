@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Why I Switched From Windows to Linux — Abhi S Aji</title>
+  <meta name="description" content="A technical publication on software engineering, Linux, and open source.">
+  <script>
+  try {
+    const savedTheme = localStorage.getItem('blog-theme');
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      document.documentElement.dataset.theme = savedTheme;
+    }
+  } catch (_) {}
+</script>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="alternate" type="application/atom+xml" title="Abhi S Aji" href="/feed.xml">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/">Abhi S Aji<span class="brand-period">.</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="/articles/">Articles</a>
+        <a href="/about/">About</a>
+        <a href="https://github.com/abhi-s-aji" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <button
+  class="theme-toggle"
+  id="theme-toggle"
+  type="button"
+  aria-label="Switch to dark mode"
+  title="Switch theme"
+>
+  <span id="theme-icon" aria-hidden="true">☾</span>
+</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <article class="post">
+  <header class="post-header">
+    <a class="back-link" href="/">← All articles</a>
+    <p class="article-meta">
+      <time datetime="2026-10-25T00:00:00+05:30">
+        October 25, 2026
+      </time>
+      
+    </p>
+    <h1>Why I Switched From Windows to Linux</h1>
+    
+  </header>
+  <div class="post-content">
+    <p>I got my first laptop during the first year of my college. Like most people, I just continued using Windows because that was the default OS that came with my laptop.</p>
+
+<p>At that point, I didn’t really think much about operating systems. Windows was just the thing I used on my laptop.</p>
+
+<p>Then I joined a cybersecurity course.</p>
+
+<h2 id="how-i-was-introduced-to-linux">How I Was Introduced to Linux</h2>
+
+<p>In cybersecurity, we mostly used Kali Linux. That was actually my first proper introduction to Linux and the open-source world.</p>
+
+<p>Before that, I had seen Linux here and there, but I never really understood it. I had mostly heard about it in college, seen people using it for projects, or seen it in computer labs.</p>
+
+<p>But when I started using Kali myself, I actually liked it.</p>
+
+<p>I liked the way it worked. I liked the UI. I liked the idea that I could actually control the environment I was working in.</p>
+
+<p>Still, I stayed with Windows.</p>
+
+<p>There was also a basic mentality I had at that time:</p>
+
+<blockquote>
+  <p>“I can’t switch.”</p>
+</blockquote>
+
+<p>So I continued using Windows.</p>
+
+<h2 id="then-my-laptop-started-struggling">Then My Laptop Started Struggling</h2>
+
+<p>After some time, I started developing more projects and doing heavier work on my laptop.</p>
+
+<p>And my laptop started to struggle.</p>
+
+<p>It became slower and slower, especially after major Windows updates.</p>
+
+<p>But one thing that frustrated me even more was OneDrive.</p>
+
+<p>I didn’t want every file I was working with to constantly be pushed towards cloud storage. I wanted my files to simply be on my computer.</p>
+
+<p>That was one of the things that really started bothering me.</p>
+
+<p>There were also background services, telemetry, ads, and other things running that I didn’t really need.</p>
+
+<p>At some point, I thought:</p>
+
+<blockquote>
+  <p>I need to try Linux properly on my own machine.</p>
+</blockquote>
+
+<h2 id="my-first-linux-experiment">My First Linux Experiment</h2>
+
+<p>I decided to dual boot Kali Linux with Windows.</p>
+
+<p>Yes, it was risky.</p>
+
+<p>And yes, I did it anyway.</p>
+
+<p>Initially, everything worked fine.</p>
+
+<p>Then Windows decided to do its thing.</p>
+
+<p>After a Windows update, my GRUB bootloader got overwritten and I lost access to Kali Linux.</p>
+
+<p>I had to manually fix it.</p>
+
+<p>And this happened multiple times. I think I went through this two to four times.</p>
+
+<p>For me, this was one of the moments where I started realizing that I didn’t really want to keep fighting with my operating system.</p>
+
+<p>To be clear, I don’t consider this a Linux problem. The issue happened after Windows updates overwrote the bootloader.</p>
+
+<p>So gradually I started looking for another Linux distribution.</p>
+
+<h2 id="from-kali-to-fedora">From Kali to Fedora</h2>
+
+<p>The problem was that I didn’t know much about Linux distributions.</p>
+
+<p>Kali was basically my introduction to Linux, so I didn’t know what I should actually use as my everyday operating system.</p>
+
+<p>I started searching online, reading forums, watching videos and looking at what other Linux users were using.</p>
+
+<p>Eventually, I found Fedora.</p>
+
+<p>Fedora looked like a good balance for what I wanted.</p>
+
+<p>I wanted something stable, secure and modern. Security is also something I personally care about a lot.</p>
+
+<p>So I decided to switch.</p>
+
+<p>And honestly, the beginning wasn’t great.</p>
+
+<h2 id="the-scary-black-terminal">The Scary Black Terminal</h2>
+
+<p>Before actually using Linux, whenever I watched Linux tutorials on YouTube, I always saw people using the terminal.</p>
+
+<p>And I would be like:</p>
+
+<blockquote>
+  <p>“Look at those mad people who are using the terminal.”</p>
+</blockquote>
+
+<p>I couldn’t understand what they were typing.</p>
+
+<p><code class="language-plaintext highlighter-rouge">sudo</code> this.</p>
+
+<p><code class="language-plaintext highlighter-rouge">dnf</code> that.</p>
+
+<p>Some random command that looked like it came from another planet.</p>
+
+<p>I thought I would never be comfortable with it.</p>
+
+<p>But I didn’t actually need to start with the terminal.</p>
+
+<p>I installed GNOME and started using Linux mostly through the GUI.</p>
+
+<p>GNOME felt simple and familiar enough for me. It wasn’t trying to throw a hundred customization options at me immediately.</p>
+
+<p>I liked that.</p>
+
+<p>For me, stability and having a structured environment are more important than having endless customization options.</p>
+
+<p>So in the beginning, I was mostly a GUI user.</p>
+
+<p>I rarely used the terminal, except for simple things.</p>
+
+<p>Then something slowly changed.</p>
+
+<h2 id="linux-became-my-development-environment">Linux Became My Development Environment</h2>
+
+<p>As I started developing more projects, I began to notice something.</p>
+
+<p>I actually preferred developing on Linux.</p>
+
+<p>For me, Linux started feeling almost like heaven for development.</p>
+
+<p>Git works naturally.</p>
+
+<p>There are many development tools that run natively.</p>
+
+<p>There are IDEs and developer tools that feel much better to me on Linux.</p>
+
+<p>Some of the same IDEs that felt heavy or laggy on Windows felt perfectly fine on my Linux installation.</p>
+
+<p>And one of the biggest things I noticed was the environment itself.</p>
+
+<p>I didn’t have to deal with a lot of unnecessary background stuff while working.</p>
+
+<p>When I’m developing, I want my laptop to focus on what I’m actually doing.</p>
+
+<p>That workflow suited me much better.</p>
+
+<p>And as a CS student, that matters a lot because I spend a lot of time writing code, running tools, building projects and experimenting with different things.</p>
+
+<h2 id="from-gui-to-terminal">From GUI to Terminal</h2>
+
+<p>The funny thing is that I started Linux because I wanted to avoid the terminal.</p>
+
+<p>Now I mostly use the terminal.</p>
+
+<p>It took me around two or three months to become properly comfortable with Linux.</p>
+
+<p>After that, my workflow gradually became more keyboard-driven.</p>
+
+<p>Now I actually find the terminal easier for many things.</p>
+
+<p>Installing something, moving files, checking something, running development tools, using Git, managing projects — a lot of things can be done without constantly moving between different windows.</p>
+
+<p>I’m not saying everyone needs to use the terminal.</p>
+
+<p>Actually, one thing Linux taught me is the opposite.</p>
+
+<p><strong>If you’re a GUI person, you can use Linux.</strong></p>
+
+<p><strong>If you’re a terminal person, you can use Linux.</strong></p>
+
+<p>You don’t have to be some command-line expert before installing Linux.</p>
+
+<p>You can start with the GUI and slowly learn the terminal when you need it.</p>
+
+<p>That’s exactly what I did.</p>
+
+<h2 id="linux-isnt-only-for-experts">Linux Isn’t Only for “Experts”</h2>
+
+<p>Before I switched, I had this idea that Linux was something used by highly skilled developers, cybersecurity people, system administrators, or people at the top of the technical pyramid.</p>
+
+<p>After actually using it, I realized that isn’t really true.</p>
+
+<p>Linux can be used by normal users too.</p>
+
+<p>You can use a desktop environment like GNOME and just use your computer normally.</p>
+
+<p>You can use KDE Plasma if you want a lot of customization.</p>
+
+<p>You can use other desktop environments and window managers if you want something completely different.</p>
+
+<p>There are so many choices.</p>
+
+<p>For example, someone who wants maximum customization can go very deep into things like Hyprland and window manager setups.</p>
+
+<p>Someone like me, who prefers a relatively stable and structured environment, can simply use GNOME.</p>
+
+<p>And someone who wants a lot of customization without having to configure everything through files can use KDE Plasma.</p>
+
+<p>That’s one of the things I like about Linux.</p>
+
+<p>There isn’t one way to use it.</p>
+
+<h2 id="freedom-is-probably-the-biggest-thing">Freedom Is Probably the Biggest Thing</h2>
+
+<p>The biggest thing Linux gave me wasn’t actually performance.</p>
+
+<p>It was the feeling of having control over my own computer.</p>
+
+<p>For me, an operating system should give the user freedom.</p>
+
+<p>I should be able to decide how my computer works and how my environment looks.</p>
+
+<p>I don’t think Windows is completely non-customizable. Of course it can be customized.</p>
+
+<p>But there is a limit.</p>
+
+<p>When you look at Linux, the amount of choice is much larger.</p>
+
+<p>Different distributions.</p>
+
+<p>Different desktop environments.</p>
+
+<p>Different window managers.</p>
+
+<p>Different shells.</p>
+
+<p>Different ways of managing software.</p>
+
+<p>You can build an environment around how <strong>you</strong> want to work.</p>
+
+<p>That’s something I really appreciate.</p>
+
+<h2 id="the-community-helped-me-a-lot">The Community Helped Me a Lot</h2>
+
+<p>Another thing I didn’t expect when I started using Linux was how much the community would help.</p>
+
+<p>As a beginner, I had a lot of problems.</p>
+
+<p>Sometimes something wouldn’t work.</p>
+
+<p>Sometimes I didn’t understand why something happened.</p>
+
+<p>Sometimes I would get some completely confusing error message.</p>
+
+<p>But there was almost always someone who had faced the same problem before.</p>
+
+<p>Forums, GitHub issues, Reddit, documentation and other Linux communities helped me many times.</p>
+
+<p>There should always be some random guy who has a solution for the problem.</p>
+
+<p>And honestly, that has been one of the best parts of using Linux.</p>
+
+<p>You learn from other people, and eventually you start solving problems yourself.</p>
+
+<h2 id="would-i-switch-back">Would I Switch Back?</h2>
+
+<p>As a CS student and developer, I don’t regret switching from Windows to Linux.</p>
+
+<p>Actually, it is probably one of the best decisions I have made for my computer usage.</p>
+
+<p>I started as someone who was afraid of the terminal.</p>
+
+<p>I started with the GUI.</p>
+
+<p>Then I learned the terminal.</p>
+
+<p>Now my workflow is mostly keyboard-driven and terminal-based.</p>
+
+<p>I started with Kali because of cybersecurity.</p>
+
+<p>I moved to Fedora because I wanted something suitable for everyday use.</p>
+
+<p>And somewhere along the way, Linux stopped being something I was “trying”.</p>
+
+<p>It became my normal operating system.</p>
+
+<p>I also like being part of an open-source community rather than depending completely on software that I don’t have much control over.</p>
+
+<p>For me, Linux is not just about being a developer or knowing a bunch of terminal commands.</p>
+
+<p>It’s about having a choice.</p>
+
+<p>And that’s probably the biggest reason I don’t see myself going back to Windows anytime soon.</p>
+
+  </div>
+  <footer class="post-end">
+    <p>Thanks for reading.</p>
+    <a href="/">Explore more articles →</a>
+  </footer>
+</article>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <a class="footer-brand" href="/">Abhi S Aji.</a>
+        <p class="footer-note">An independent technical publication.</p>
+      </div>
+      <div class="footer-links" aria-label="Social links">
+        <a href="https://github.com/abhi-s-aji">GitHub</a>
+        <a href="https://www.linkedin.com/in/abhi-s-aji-eden">LinkedIn</a>
+        <a href="https://x.com/abhisaji_Eden">X</a>
+        <a href="https://bsky.app/profile/abhisaji.bsky.social">Bluesky</a>
+        <a href="mailto:abhisajieden.dev@gmail.com">Email</a>
+      </div>
+      <p class="copyright">© 2026 Abhi S Aji</p>
+    </div>
+  </footer>
+  <script>
+  (() => {
+    const button = document.getElementById('theme-toggle');
+    const icon = document.getElementById('theme-icon');
+    if (!button || !icon) return;
+
+    function updateTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      icon.textContent = theme === 'dark' ? '☀' : '☾';
+      button.setAttribute(
+        'aria-label',
+        theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+      );
+
+      try {
+        localStorage.setItem('blog-theme', theme);
+      } catch (_) {}
+    }
+
+    updateTheme(
+      document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
+    );
+
+    button.addEventListener('click', () => {
+      const current = document.documentElement.dataset.theme;
+      updateTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  })();
+</script>
+</body>
+</html>

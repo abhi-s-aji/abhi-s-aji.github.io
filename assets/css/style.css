@@ -324,3 +324,149 @@ a:hover { color: var(--link); }
 
   .copyright { grid-column: auto; }
 }
+
+
+/* Profile identity */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-bottom: 54px;
+}
+
+.profile-avatar {
+  display: block;
+  width: 76px;
+  height: 76px;
+  flex: 0 0 76px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--background);
+}
+
+.profile-details {
+  min-width: 0;
+}
+
+.profile-name {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.3px;
+}
+
+.profile-bio {
+  margin: 2px 0 9px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.social-links a {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: color 150ms ease;
+}
+
+.social-links a:hover {
+  color: var(--text);
+}
+
+.social-links svg {
+  display: block;
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
+
+@media (max-width: 600px) {
+  .profile {
+    gap: 13px;
+    margin-bottom: 40px;
+  }
+
+  .profile-avatar {
+    width: 64px;
+    height: 64px;
+    flex-basis: 64px;
+  }
+
+  .profile-bio {
+    font-size: 12px;
+  }
+
+  .social-links {
+    gap: 11px;
+  }
+}
+
+
+/* Theme toggle */
+.theme-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--border);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 3px;
+}
+
+/* Dark theme */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #161616;
+  --text: #e8e8e8;
+  --muted: #a0a0a0;
+  --border: #333333;
+  --link: #8ab4f8;
+}
+
+:root[data-theme="dark"] .intro-copy,
+:root[data-theme="dark"] .article-excerpt {
+  color: #b8b8b8;
+}
+
+:root[data-theme="dark"] .post-content pre {
+  background: #202020;
+  color: #e8e8e8;
+}
+
+:root[data-theme="dark"] .post-content :not(pre) > code {
+  background: #292929;
+  color: #e8e8e8;
+}
+
+:root[data-theme="dark"] .meta-dot {
+  color: #777777;
+}
