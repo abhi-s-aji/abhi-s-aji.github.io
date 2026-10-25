@@ -7,34 +7,45 @@
   <meta name="theme-color" content="#ffffff">
   <title>Why I Switched From Windows to Linux — Abhi S Aji</title>
   <meta name="description" content="A technical publication on software engineering, Linux, and open source.">
+
   <script>
-  try {
-    const savedTheme = localStorage.getItem('blog-theme');
-    if (savedTheme === 'dark' || savedTheme === 'light') {
-      document.documentElement.dataset.theme = savedTheme;
-    }
-  } catch (_) {}
-</script>
+    try {
+      const savedTheme = localStorage.getItem('blog-theme');
+      if (savedTheme === 'dark' || savedTheme === 'light') {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    } catch (_) {}
+  </script>
+
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="alternate" type="application/atom+xml" title="Abhi S Aji" href="/feed.xml">
 </head>
+
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="/">Abhi S Aji<span class="brand-period">.</span></a>
+      <a class="brand" href="/">
+        Abhi S Aji<span class="brand-period">.</span>
+      </a>
+
       <nav class="main-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
         <a href="/articles/">Articles</a>
         <a href="/about/">About</a>
         <a href="https://github.com/abhi-s-aji" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+
         <button
-  class="theme-toggle"
-  id="theme-toggle"
-  type="button"
-  aria-label="Switch to dark mode"
-  title="Switch theme"
->
-  <span id="theme-icon" aria-hidden="true">☾</span>
-</button>
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch to dark mode"
+          title="Switch theme"
+        >
+          <svg id="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.64 5.64l1.42 1.42m9.88 9.88 1.42 1.42m0-12.72-1.42 1.42m-9.88 9.88-1.42 1.42"/>
+            <circle cx="12" cy="12" r="4"/>
+          </svg>
+        </button>
       </nav>
     </div>
   </header>
@@ -356,44 +367,66 @@
         <a class="footer-brand" href="/">Abhi S Aji.</a>
         <p class="footer-note">An independent technical publication.</p>
       </div>
+
       <div class="footer-links" aria-label="Social links">
-        <a href="https://github.com/abhi-s-aji">GitHub</a>
-        <a href="https://www.linkedin.com/in/abhi-s-aji-eden">LinkedIn</a>
-        <a href="https://x.com/abhisaji_Eden">X</a>
-        <a href="https://bsky.app/profile/abhisaji.bsky.social">Bluesky</a>
+        <a href="https://github.com/abhi-s-aji" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/abhi-s-aji-eden" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://x.com/abhisaji_Eden" target="_blank" rel="noopener noreferrer">X</a>
+        <a href="https://bsky.app/profile/abhisaji.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a>
         <a href="mailto:abhisajieden.dev@gmail.com">Email</a>
       </div>
+
       <p class="copyright">© 2026 Abhi S Aji</p>
     </div>
   </footer>
-  <script>
-  (() => {
-    const button = document.getElementById('theme-toggle');
-    const icon = document.getElementById('theme-icon');
-    if (!button || !icon) return;
 
-    function updateTheme(theme) {
-      document.documentElement.dataset.theme = theme;
-      icon.textContent = theme === 'dark' ? '☀' : '☾';
-      button.setAttribute(
-        'aria-label',
-        theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+  <script>
+    (() => {
+      const button = document.getElementById('theme-toggle');
+      const icon = document.getElementById('theme-icon');
+
+      if (!button || !icon) return;
+
+      const sunIcon = `
+        <path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.64 5.64l1.42 1.42m9.88 9.88 1.42 1.42m0-12.72-1.42 1.42m-9.88 9.88-1.42 1.42"/>
+        <circle cx="12" cy="12" r="4"/>
+      `;
+
+      const moonIcon = `
+        <path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.5 8.5 0 1 0 20.2 15.2Z"/>
+      `;
+
+      function updateTheme(theme) {
+        document.documentElement.dataset.theme = theme;
+
+        icon.innerHTML = theme === 'dark' ? sunIcon : moonIcon;
+
+        button.setAttribute(
+          'aria-label',
+          theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+        );
+
+        button.title = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) {
+          themeColor.content = theme === 'dark' ? '#161616' : '#ffffff';
+        }
+
+        try {
+          localStorage.setItem('blog-theme', theme);
+        } catch (_) {}
+      }
+
+      updateTheme(
+        document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
       );
 
-      try {
-        localStorage.setItem('blog-theme', theme);
-      } catch (_) {}
-    }
-
-    updateTheme(
-      document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
-    );
-
-    button.addEventListener('click', () => {
-      const current = document.documentElement.dataset.theme;
-      updateTheme(current === 'dark' ? 'light' : 'dark');
-    });
-  })();
-</script>
+      button.addEventListener('click', () => {
+        const current = document.documentElement.dataset.theme;
+        updateTheme(current === 'dark' ? 'light' : 'dark');
+      });
+    })();
+  </script>
 </body>
 </html>

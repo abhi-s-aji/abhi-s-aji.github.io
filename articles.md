@@ -1,14 +1,14 @@
 ---
 layout: default
 title: Articles
-description: "Articles on software engineering, Linux, and open source."
+description: "Java, backend development, Linux, open source, and software projects."
 permalink: /articles/
 ---
 
 <div class="page-heading">
-  <p class="eyebrow">THE ARCHIVE</p>
+  
   <h1>Articles</h1>
-  <p class="page-description">Notes, experiences, and lessons from building with technology.</p>
+  <p class="page-description">Engineering, experiments, and lessons learned.</p>
 </div>
 
 <section class="article-list" aria-label="Published articles">
