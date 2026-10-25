@@ -1,0 +1,48 @@
+
+---
+layout: default
+---
+<section class="intro">
+  <p class="eyebrow">A TECHNICAL PUBLICATION</p>
+  <h1>Thinking, building, and learning with technology.</h1>
+  <p class="intro-copy">
+    Experiences, ideas, experiments, and lessons from my journey
+    through software engineering, Linux, and open source.
+  </p>
+  <div class="intro-links">
+    <a href="https://github.com/abhi-s-aji">Explore my work on GitHub ↗</a>
+    <a href="mailto:abhisajieden.dev@gmail.com">Get in touch ↗</a>
+  </div>
+</section>
+
+<section class="articles-section">
+  <div class="section-heading">
+    <h2>Latest articles</h2>
+    <span>{{ site.posts | size }} published</span>
+  </div>
+
+  {% if site.posts.size > 0 %}
+    <div class="article-list">
+      {% for post in site.posts %}
+        <article class="article-card">
+          <p class="article-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%b %d, %Y" }}
+            </time>
+            {% if post.categories.size > 0 %}
+              <span class="meta-dot">·</span>
+              <span>{{ post.categories | first | capitalize }}</span>
+            {% endif %}
+          </p>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+          <p class="article-excerpt">
+            {{ post.excerpt | strip_html | normalize_whitespace | truncate: 180 }}
+          </p>
+          <a class="read-link" href="{{ post.url | relative_url }}">Read article <span aria-hidden="true">→</span></a>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="empty-state">The first article is on its way.</p>
+  {% endif %}
+</section>
