@@ -1,4 +1,7 @@
 
-title: "Abhi's Notes"
-description: "My journey through software engineering, Linux, and open source."
-theme: minima
+title: "Abhi S Aji"
+description: "A technical publication on software engineering, Linux, and open source."
+url: "https://abhi-s-aji.github.io"
+baseurl: ""
+markdown: kramdown
+permalink: /articles/:year/:month/:day/:title/
