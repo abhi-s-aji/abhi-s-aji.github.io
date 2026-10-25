@@ -1,0 +1,184 @@
+---
+layout: default
+---
+
+<article class="post">
+  <header class="post-header">
+    <a class="back-link" href="{{ '/' | relative_url }}">← All articles</a>
+
+    <p class="article-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%B %d, %Y" }}
+      </time>
+      {% if page.categories.size > 0 %}
+        <span class="meta-dot">·</span>
+        {{ page.categories | first | capitalize }}
+      {% endif %}
+    </p>
+
+    <h1>{{ page.title | escape }}</h1>
+
+    {% if page.description %}
+      <p class="post-description">{{ page.description | escape }}</p>
+    {% endif %}
+  </header>
+
+  <div class="article-toolbar">
+    <button class="article-action" type="button" data-article-action="share">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72" />
+        <path d="M14 11a5 5 0 0 0-7.07 0l-3 3A5 5 0 0 0 7 21.07l1.72-1.72" />
+      </svg>
+      <span>Share</span>
+    </button>
+
+    <button class="article-action" type="button" data-article-action="download">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <path d="m7 10 5 5 5-5" />
+        <path d="M12 15V3" />
+      </svg>
+      <span>Download</span>
+    </button>
+  </div>
+
+  <div class="post-content" id="article-content">
+    {{ content }}
+  </div>
+
+  <footer class="post-end">
+    <p>Thanks for reading.</p>
+    <a href="{{ '/' | relative_url }}">Explore more articles →</a>
+  </footer>
+</article>
+
+<div id="copy-toast" class="copy-toast" role="status" aria-live="polite">
+  Link copied
+</div>
+
+<style>
+  .copy-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 9999;
+    transform: translate(-50%, 12px);
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: #222;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 180ms ease, transform 180ms ease,
+                visibility 180ms ease;
+  }
+
+  .copy-toast.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .copy-toast {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+(() => {
+  const article = document.querySelector('.post');
+  if (!article) return;
+
+  const shareButton = article.querySelector('[data-article-action="share"]');
+  const downloadButton = article.querySelector('[data-article-action="download"]');
+  const toast = document.getElementById('copy-toast');
+
+  const title = {{ page.title | jsonify }};
+  const permanentUrl = new URL(
+    {{ page.url | relative_url | jsonify }},
+    window.location.origin
+  ).href;
+  const date = {{ page.date | date: "%B %d, %Y" | jsonify }};
+  const content = article.querySelector('#article-content');
+
+  let toastTimer;
+
+  function showToast(message) {
+    if (!toast) return;
+
+    toast.textContent = message;
+    toast.classList.add('is-visible');
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('is-visible');
+    }, 2200);
+  }
+
+  async function shareArticle() {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(permanentUrl);
+      } else {
+        const temporaryInput = document.createElement('textarea');
+        temporaryInput.value = permanentUrl;
+        temporaryInput.setAttribute('readonly', '');
+        temporaryInput.style.position = 'fixed';
+        temporaryInput.style.left = '-9999px';
+        document.body.appendChild(temporaryInput);
+        temporaryInput.select();
+
+        const copied = document.execCommand('copy');
+        temporaryInput.remove();
+
+        if (!copied) throw new Error('Copy failed');
+      }
+
+      showToast('Link copied');
+    } catch {
+      showToast('Unable to copy link. Check browser permissions.');
+    }
+  }
+
+  function downloadArticle() {
+    const articleText = [
+      title,
+      '='.repeat(title.length),
+      '',
+      'Published: ' + date,
+      'Article link: ' + permanentUrl,
+      '',
+      content ? content.innerText.trim() : ''
+    ].join('\n');
+
+    const blob = new Blob([articleText], {
+      type: 'text/plain;charset=utf-8'
+    });
+
+    const downloadUrl = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+
+    link.href = downloadUrl;
+    link.download = {{ page.slug | jsonify }} + '.txt';
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+  }
+
+  if (shareButton) {
+    shareButton.addEventListener('click', shareArticle);
+  }
+
+  if (downloadButton) {
+    downloadButton.addEventListener('click', downloadArticle);
+  }
+})();
+</script>
