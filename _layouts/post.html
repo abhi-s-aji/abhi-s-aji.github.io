@@ -1,0 +1,29 @@
+
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <a class="back-link" href="{{ '/' | relative_url }}">← All articles</a>
+    <p class="article-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%B %d, %Y" }}
+      </time>
+      {% if page.categories.size > 0 %}
+        <span class="meta-dot">·</span>
+        {{ page.categories | first | capitalize }}
+      {% endif %}
+    </p>
+    <h1>{{ page.title | escape }}</h1>
+    {% if page.description %}
+      <p class="post-description">{{ page.description | escape }}</p>
+    {% endif %}
+  </header>
+  <div class="post-content">
+    {{ content }}
+  </div>
+  <footer class="post-end">
+    <p>Thanks for reading.</p>
+    <a href="{{ '/' | relative_url }}">Explore more articles →</a>
+  </footer>
+</article>
