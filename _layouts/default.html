@@ -18,7 +18,7 @@
   </script>
 
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
 </head>
 
 <body>
@@ -67,6 +67,7 @@
         <a href="https://x.com/abhisaji_Eden" target="_blank" rel="noopener noreferrer">X</a>
         <a href="https://bsky.app/profile/abhisaji.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a>
         <a href="mailto:abhisajieden.dev@gmail.com">Email</a>
+        <a href="{{ '/feed.xml' | relative_url }}" id="rss-modal-trigger" aria-haspopup="dialog">RSS Feed</a>
       </div>
 
       <p class="copyright">© {{ site.time | date: "%Y" }} Abhi S Aji</p>
@@ -119,6 +120,182 @@
         const current = document.documentElement.dataset.theme;
         updateTheme(current === 'dark' ? 'light' : 'dark');
       });
+    })();
+  </script>
+
+  <dialog id="rss-modal" class="rss-modal" aria-labelledby="rss-modal-title" aria-describedby="rss-modal-desc">
+    <div class="rss-modal-card">
+      <div class="rss-modal-header">
+        <div class="rss-modal-header-text">
+          <div class="rss-modal-title-row">
+            <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18" class="rss-modal-icon">
+              <path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="5" cy="19" r="1.5" fill="currentColor"/>
+            </svg>
+            <h2 id="rss-modal-title" class="rss-modal-title">Follow my articles</h2>
+          </div>
+          <p id="rss-modal-desc" class="rss-modal-desc">Get new posts in your preferred RSS reader.</p>
+        </div>
+        <button type="button" class="rss-modal-close" id="rss-modal-close" aria-label="Close dialog" title="Close">
+          <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
+            <path d="M18 6 6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="rss-modal-body">
+        <div class="rss-url-row">
+          <label for="rss-feed-url" class="visually-hidden">Feed URL</label>
+          <input
+            type="text"
+            id="rss-feed-url"
+            class="rss-url-input"
+            value="https://abhi-s-aji.github.io/feed.xml"
+            readonly
+            spellcheck="false"
+          >
+          <button type="button" id="rss-copy-btn" class="rss-copy-btn">
+            <span id="rss-copy-btn-text">Copy URL</span>
+          </button>
+        </div>
+        <p id="rss-copy-status" class="rss-copy-status" role="status" aria-live="polite" hidden>Feed URL copied</p>
+
+        <div class="rss-instructions">
+          <p class="rss-instructions-heading">How to subscribe</p>
+          <ol class="rss-instructions-list">
+            <li>Copy the feed URL.</li>
+            <li>Open your preferred RSS reader.</li>
+            <li>Choose “Add feed” or “Subscribe” and paste the URL.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="rss-modal-footer">
+        <a href="{{ '/feed.xml' | relative_url }}" class="rss-raw-link" target="_blank" rel="noopener noreferrer">
+          View raw feed ↗
+        </a>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      const trigger = document.getElementById('rss-modal-trigger');
+      const modal = document.getElementById('rss-modal');
+      const closeBtn = document.getElementById('rss-modal-close');
+      const copyBtn = document.getElementById('rss-copy-btn');
+      const copyBtnText = document.getElementById('rss-copy-btn-text');
+      const copyStatus = document.getElementById('rss-copy-status');
+      const urlInput = document.getElementById('rss-feed-url');
+
+      if (!trigger || !modal) return;
+
+      let lastActiveElement = null;
+      let copyTimeout = null;
+
+      function openModal() {
+        lastActiveElement = document.activeElement;
+        if (typeof modal.showModal === 'function') {
+          modal.showModal();
+        } else {
+          modal.setAttribute('open', '');
+        }
+        document.body.classList.add('modal-open');
+        if (closeBtn) closeBtn.focus();
+      }
+
+      function closeModal() {
+        if (typeof modal.close === 'function') {
+          modal.close();
+        } else {
+          modal.removeAttribute('open');
+        }
+        document.body.classList.remove('modal-open');
+        if (copyTimeout) {
+          clearTimeout(copyTimeout);
+          copyTimeout = null;
+        }
+        if (copyBtnText) copyBtnText.textContent = 'Copy URL';
+        if (copyStatus) copyStatus.hidden = true;
+
+        if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+          lastActiveElement.focus();
+        } else if (trigger) {
+          trigger.focus();
+        }
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          closeModal();
+        });
+      }
+
+      modal.addEventListener('click', (e) => {
+        const card = modal.querySelector('.rss-modal-card');
+        if (card && !card.contains(e.target)) {
+          closeModal();
+        }
+      });
+
+      modal.addEventListener('cancel', (e) => {
+        e.preventDefault();
+        closeModal();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && (modal.open || modal.hasAttribute('open'))) {
+          e.preventDefault();
+          closeModal();
+        }
+      });
+
+      if (copyBtn && urlInput) {
+        copyBtn.addEventListener('click', async () => {
+          const url = urlInput.value;
+          let copied = false;
+
+          try {
+            if (navigator.clipboard && (typeof window === 'undefined' || window.isSecureContext)) {
+              await navigator.clipboard.writeText(url);
+              copied = true;
+            } else {
+              urlInput.select();
+              copied = document.execCommand('copy');
+            }
+          } catch (_) {
+            urlInput.select();
+            copied = false;
+          }
+
+          if (copyTimeout) clearTimeout(copyTimeout);
+
+          if (copied) {
+            if (copyBtnText) copyBtnText.textContent = 'Copied!';
+            if (copyStatus) {
+              copyStatus.textContent = 'Feed URL copied';
+              copyStatus.hidden = false;
+            }
+          } else {
+            urlInput.select();
+            if (copyStatus) {
+              copyStatus.textContent = 'Select and copy the URL manually';
+              copyStatus.hidden = false;
+            }
+          }
+
+          copyTimeout = setTimeout(() => {
+            if (copyBtnText) copyBtnText.textContent = 'Copy URL';
+            if (copyStatus) copyStatus.hidden = true;
+          }, 2500);
+        });
+      }
     })();
   </script>
 </body>
