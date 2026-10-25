@@ -4,25 +4,158 @@ layout: default
 <article class="post">
   <header class="post-header">
     <a class="back-link" href="{{ '/' | relative_url }}">← All articles</a>
-    <p class="article-meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}">
-        {{ page.date | date: "%B %d, %Y" }}
-      </time>
-      {% if page.categories.size > 0 %}
-        <span class="meta-dot">·</span>
-        {{ page.categories | first | capitalize }}
-      {% endif %}
-    </p>
+
+    <div class="article-toolbar-row">
+      <p class="article-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: "%B %d, %Y" }}
+        </time>
+        {% if page.categories.size > 0 %}
+          <span class="meta-dot">·</span>
+          {{ page.categories | first | capitalize }}
+        {% endif %}
+      </p>
+
+      <div class="article-actions" aria-label="Article actions">
+        <button type="button" class="article-action" data-article-action="share"
+                aria-label="Share article" title="Share article">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/></svg>
+        </button>
+        <button type="button" class="article-action" data-article-action="download"
+                aria-label="Download article as text" title="Download TXT">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v3h16v-3"/></svg>
+        </button>
+      </div>
+    </div>
+
     <h1>{{ page.title | escape }}</h1>
     {% if page.description %}
       <p class="post-description">{{ page.description | escape }}</p>
     {% endif %}
   </header>
-  <div class="post-content">
+
+  <div class="post-content" id="article-content">
     {{ content }}
   </div>
+
   <footer class="post-end">
     <p>Thanks for reading.</p>
     <a href="{{ '/' | relative_url }}">Explore more articles →</a>
   </footer>
 </article>
+
+<script>
+(() => {
+  const article = document.querySelector('.post');
+  const content = document.querySelector('#article-content');
+  if (!article || !content) return;
+
+  const title = {{ page.title | jsonify }};
+  const permanentUrl = {{ page.url | absolute_url | jsonify }};
+  const date = {{ page.date | date: "%B %d, %Y" | jsonify }};
+
+  function articleText() {
+    const copy = content.cloneNode(true);
+    copy.querySelectorAll('script, style, button, .article-actions, .no-export')
+      .forEach(element => element.remove());
+
+    return `${title}\n${date}\n${permanentUrl}\n\n${copy.innerText.trim()}\n`;
+  }
+
+  function showCopyToast(message) {
+    let toast = document.getElementById('copy-toast');
+
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'copy-toast';
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
+
+      Object.assign(toast.style, {
+        position: 'fixed',
+        left: '50%',
+        bottom: '24px',
+        transform: 'translate(-50%, 10px)',
+        padding: '10px 16px',
+        borderRadius: '8px',
+        background: '#222',
+        color: '#fff',
+        fontSize: '14px',
+        zIndex: '99999',
+        opacity: '0',
+        transition: 'opacity 180ms ease, transform 180ms ease',
+        pointerEvents: 'none'
+      });
+
+      document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translate(-50%, 0)';
+
+    clearTimeout(window.copyToastTimer);
+    window.copyToastTimer = setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translate(-50%, 10px)';
+    }, 2200);
+  }
+
+  async function shareArticle() {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(permanentUrl);
+      } else {
+        const field = document.createElement('textarea');
+        field.value = permanentUrl;
+        field.setAttribute('readonly', '');
+        Object.assign(field.style, {
+          position: 'fixed',
+          left: '-9999px',
+          top: '0'
+        });
+
+        document.body.appendChild(field);
+        field.select();
+
+        const copied = document.execCommand('copy');
+        field.remove();
+
+        if (!copied) throw new Error('Copy failed');
+      }
+
+      showCopyToast('Link copied');
+    } catch {
+      showCopyToast('Unable to copy link');
+    }
+  }
+
+  function downloadText() {
+    const blob = new Blob([articleText()], { type: 'text/plain;charset=utf-8' });
+    const objectUrl = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const filename = title
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-zA-Z0-9]+/g, '-')
+      .replace(/^-|-$/g, '')
+      .toLowerCase() || 'article';
+
+    link.href = objectUrl;
+    link.download = `${filename}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+  }
+
+  article.querySelectorAll('[data-article-action]').forEach(button => {
+    button.addEventListener('click', async () => {
+      const action = button.dataset.articleAction;
+
+      if (action === 'share') await shareArticle();
+      if (action === 'download') downloadText();
+    });
+  });
+})();
+</script>
