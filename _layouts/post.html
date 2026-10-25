@@ -38,6 +38,28 @@ layout: default
     {{ content }}
   </div>
 
+  {% if page.previous or page.next %}
+  <nav class="post-pagination" aria-label="Article navigation">
+    {% if page.previous %}
+    <div class="pagination-card pagination-prev">
+      <span class="pagination-label">← Previous article</span>
+      <a class="pagination-link" href="{{ page.previous.url | relative_url }}">{{ page.previous.title | escape }}</a>
+    </div>
+    {% else %}
+    <div class="pagination-spacer" aria-hidden="true"></div>
+    {% endif %}
+
+    {% if page.next %}
+    <div class="pagination-card pagination-next">
+      <span class="pagination-label">Next article →</span>
+      <a class="pagination-link" href="{{ page.next.url | relative_url }}">{{ page.next.title | escape }}</a>
+    </div>
+    {% else %}
+    <div class="pagination-spacer" aria-hidden="true"></div>
+    {% endif %}
+  </nav>
+  {% endif %}
+
   <footer class="post-end">
     <p>Thanks for reading.</p>
     <a href="{{ '/' | relative_url }}">Explore more articles →</a>
