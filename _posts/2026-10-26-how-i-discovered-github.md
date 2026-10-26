@@ -67,4 +67,4 @@ Looking back, learning Git and GitHub was probably one of the best things I did 
 
 I didn't know it all at the outset and I'm still a long way from being an expert. That's the fascinating thing about learning technology really: you start off somewhere (however ignorant you may be at the time) and you gradually work your way through it.
 
-For me it all started with two words that were everywhere: Git and GitHub.
+For me it all started with two words that were everywhere: Git and GitHub.And that's where my journey with Git and GitHub began. I'm still learning, and there's a lot more to explore.
