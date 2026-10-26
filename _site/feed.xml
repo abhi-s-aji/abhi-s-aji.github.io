@@ -7,8 +7,8 @@
     <description>A technical publication on software engineering, Linux, and open source.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 26 Oct 2026 00:22:16 +0530</pubDate>
-    <lastBuildDate>Mon, 26 Oct 2026 00:22:16 +0530</lastBuildDate>
+    <pubDate>Mon, 26 Oct 2026 18:23:05 +0530</pubDate>
+    <lastBuildDate>Mon, 26 Oct 2026 18:23:05 +0530</lastBuildDate>
     <generator>Jekyll</generator>
     
     <item>
@@ -79,7 +79,7 @@
 
 <p>I didn’t know it all at the outset and I’m still a long way from being an expert. That’s the fascinating thing about learning technology really: you start off somewhere (however ignorant you may be at the time) and you gradually work your way through it.</p>
 
-<p>For me it all started with two words that were everywhere: Git and GitHub.</p>
+<p>For me it all started with two words that were everywhere: Git and GitHub.And that’s where my journey with Git and GitHub began. I’m still learning, and there’s a lot more to explore.</p>
 ]]></content:encoded>
     </item>
     
