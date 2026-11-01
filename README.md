@@ -47,7 +47,7 @@
   <a href="mailto:abhisajieden@gmail.com">
     <img src="https://img.shields.io/badge/Email-Get_in_Touch-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Email" />
   </a>
-  <a href="mailto:abhisjieden.dev@gmail.com">
+  <a href="mailto:abhisaji.dev@gmail.com">
     <img src="https://img.shields.io/badge/Developer_Email-Contact-52525B?style=flat-square&logo=minutemailer&logoColor=white" alt="Developer email" />
   </a>
 </p>
