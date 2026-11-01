@@ -95,7 +95,7 @@ Follow my work and explore what I am building.
 - **LinkedIn:** [abhi-s-aji-eden](https://www.linkedin.com/in/abhi-s-aji-eden)
 - **X:** [@abhisaji_Eden](https://x.com/abhisaji_Eden)
 - **Email:** [abhisajieden@gmail.com](mailto:abhisajieden@gmail.com)
-- **Developer Email:** [abhisjieden.dev@gmail.com](mailto:abhisjieden.dev@gmail.com)
+- **Developer Email:** [abhisji.dev@gmail.com](mailto:abhisji.dev@gmail.com)
 
 ---
 
