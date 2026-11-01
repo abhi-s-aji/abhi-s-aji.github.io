@@ -5,16 +5,16 @@
   <channel>
     <title>Abhi S Aji</title>
     <description>A technical publication on software engineering, Linux, and open source.</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 26 Oct 2026 18:23:05 +0530</pubDate>
-    <lastBuildDate>Mon, 26 Oct 2026 18:23:05 +0530</lastBuildDate>
+    <link>https://abhi-s-aji.github.io/</link>
+    <atom:link href="https://abhi-s-aji.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 01 Nov 2026 11:24:46 +0530</pubDate>
+    <lastBuildDate>Sun, 01 Nov 2026 11:24:46 +0530</lastBuildDate>
     <generator>Jekyll</generator>
     
     <item>
       <title>How I Discovered GitHub</title>
-      <link>http://localhost:4000/articles/2026/10/26/how-i-discovered-github/</link>
-      <guid isPermaLink="true">http://localhost:4000/articles/2026/10/26/how-i-discovered-github/</guid>
+      <link>https://abhi-s-aji.github.io/articles/2026/10/26/how-i-discovered-github/</link>
+      <guid isPermaLink="true">https://abhi-s-aji.github.io/articles/2026/10/26/how-i-discovered-github/</guid>
       <pubDate>Mon, 26 Oct 2026 00:00:00 +0530</pubDate>
       <description>When I started off in software engineering in my first year of uni I didn’t actually know much at all about the world of tech. I had no technical background whatsoever and didn’t a clue what tools the developers actually used on a day to day basis.</description>
       <content:encoded><![CDATA[<p>When I started off in software engineering in my first year of uni I didn’t actually know much at all about the world of tech. I had no technical background whatsoever and didn’t a clue what tools the developers actually used on a day to day basis.</p>
@@ -85,8 +85,8 @@
     
     <item>
       <title>Why I Switched From Windows to Linux</title>
-      <link>http://localhost:4000/articles/2026/10/25/why-linux/</link>
-      <guid isPermaLink="true">http://localhost:4000/articles/2026/10/25/why-linux/</guid>
+      <link>https://abhi-s-aji.github.io/articles/2026/10/25/why-linux/</link>
+      <guid isPermaLink="true">https://abhi-s-aji.github.io/articles/2026/10/25/why-linux/</guid>
       <pubDate>Sun, 25 Oct 2026 00:00:00 +0530</pubDate>
       <description>I got my first laptop during the first year of my college. Like most people, I just continued using Windows because that was the default OS that came with my laptop.</description>
       <content:encoded><![CDATA[<p>I got my first laptop during the first year of my college. Like most people, I just continued using Windows because that was the default OS that came with my laptop.</p>
@@ -243,7 +243,7 @@
 
 <h2 id="from-gui-to-terminal">From GUI to Terminal</h2>
 
-<p>The funny thing is that I started Linux because I wanted to avoid the terminal.</p>
+<p>The funny thing is that I started Linux and I wanted to avoid the terminal.</p>
 
 <p>Now I mostly use the terminal.</p>
 
